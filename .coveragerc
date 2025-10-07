@@ -1,0 +1,44 @@
+[run]
+# The source code directories to measure coverage for
+source =
+    .
+
+# Omit patterns for files you don't want to include in coverage
+omit =
+    */migrations/*
+    */__init__.py
+    */tests/*
+    */urls.py
+
+# Enable branch coverage to ensure if/else and loops are fully tested
+branch = True
+
+# Set parallel mode if running tests in multiple processes (e.g., pytest-xdist)
+parallel = True
+
+# Django often uses subprocesses or Celery, so include concurrency tracking
+concurrency = multiprocessing,thread
+
+[report]
+# Show lines not covered
+show_missing = True
+
+# Exclude lines that are not meant to be tested (Django boilerplate, etc.)
+exclude_lines =
+    pragma: no cover
+    def __str__
+    def __repr__
+    if self\.debug
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    except ImportError:
+
+# Sort report output by module name
+sort = Name
+
+[paths]
+# Normalize paths when combining reports from multiple environments
+source =
+    .
+    */site-packages
